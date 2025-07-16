@@ -1,0 +1,7 @@
+// Comentários
+
+/*
+Bloco
+de
+código
+*/
