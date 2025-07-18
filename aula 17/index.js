@@ -1,5 +1,9 @@
-function saudacao(nome) {
-  console.log(`Bom dia ${nome}`);
-}
+//Função Anônima
+//const raiz = function (n) {
+//return n ** 0.5;
+//};
 
-saudacao("Henrique");
+//console.log(raiz(9));
+
+//Função Moderna
+const raiz = (n) => n ** 0.5;
