@@ -10,11 +10,7 @@ const a = {
   sobrenome: "Santos",
 };
 //const b = a; Isso aqui aponta aponta pro mesmo local da memoria
-console.log(b);
-
-a.nome = "Joao";
-console.log(b);
 
 //Se eu quisesse copiar o valor de b para a
 //Spread
-const b = { ...a }; //agora o valor de b é independete
+const b = { ...a }; //agora o valor de b é independente
