@@ -3,7 +3,7 @@ function funcaoPrincipal() {
   const resultado = document.querySelector(".resultado");
   resultado.style.display = "none";
 
-  function calculaImc(evento) {
+  form.addEventListener("submit", function (evento) {
     evento.preventDefault();
     const peso = form.querySelector("#peso");
     const altura = form.querySelector("#altura");
@@ -38,7 +38,6 @@ function funcaoPrincipal() {
     }
 
     resultado.style.display = "block";
-  }
-  form.addEventListener("submit", calculaImc);
+  });
 }
 funcaoPrincipal();
