@@ -9,10 +9,10 @@ function principal() {
     let peso = Number(inputPeso.value);
     let altura = Number(inputAltura.value);
 
-    let resultado = calculaImc(peso, altura);
-    let msg = classifica(resultado);
+    let imc = calculaImc(peso, altura);
+    let classificacao = classifica(resultado);
 
-    mostra(msg);
+    mostra(imc, classificacao);
   });
 }
 
@@ -36,6 +36,7 @@ function classifica(resultado) {
   }
 }
 
-function mostra(){
-    
+function mostra(imc, classificacao) {
+  const resultado = document.querySelector(".resultado");
+  resultado.innerHTML = `Seu imc é ${msg.toFixed(2)} (${classificacao})`;
 }

@@ -1,43 +1,42 @@
-function funcaoPrincipal() {
+function principal() {
   const form = document.querySelector(".form");
-  const resultado = document.querySelector(".resultado");
-  resultado.style.display = "none";
+  form.addEventListener("submit", function (event) {
+    event.preventDefault();
 
-  form.addEventListener("submit", function (evento) {
-    evento.preventDefault();
-    const peso = form.querySelector("#peso");
-    const altura = form.querySelector("#altura");
+    const inputPeso = form.querySelector("#peso");
+    const inputAltura = form.querySelector("#altura");
 
-    let valorPeso = peso.value;
-    let valorAltura = altura.value;
-    let resul = valorPeso / (valorAltura * valorAltura);
+    let peso = Number(inputPeso.value);
+    let altura = Number(inputAltura.value);
 
-    //Verificar se é valido
-    if (isNaN(Number(valorPeso))) {
-      resultado.innerHTML = "Peso inválido";
-      resultado.style.backgroundColor = "rgb(208, 29, 29)";
-    } else if (isNaN(Number(valorAltura))) {
-      resultado.innerHTML = "Altura inválida";
-      resultado.style.backgroundColor = "rgb(208, 29, 29)";
-    } else {
-      if (resul < 18.5) {
-        classificacao = "Abaixo do peso";
-      } else if (resul < 24.9) {
-        classificacao = "Peso Normal";
-      } else if (resul < 29.9) {
-        classificacao = "Sobrepeso";
-      } else if (resul < 34.9) {
-        classificacao = "Obesidade grau 1";
-      } else if (resul < 39.9) {
-        classificacao = "Obesidade grau 2";
-      } else {
-        classificacao = "Obesidade grau 3";
-      }
-      resultado.style.backgroundColor = "";
-      resultado.innerHTML = `Seu IMC é ${resul.toFixed(2)} (${classificacao})`;
-    }
+    let imc = calculaImc(peso, altura);
+    let classificacao = classifica(resultado);
 
-    resultado.style.display = "block";
+    mostra(imc, classificacao);
   });
 }
-funcaoPrincipal();
+
+function calculaImc(peso, altura) {
+  return peso / altura ** 2;
+}
+
+function classifica(resultado) {
+  if (resultado < 18.5) {
+    return "Abaixo do peso";
+  } else if (resultado < 24.9) {
+    return "Peso Normal";
+  } else if (resultado < 29.9) {
+    return "Sobrepeso";
+  } else if (resultado < 34.9) {
+    return "Obesidade grau 1";
+  } else if (resultado < 39.9) {
+    return "Obesidade grau 2";
+  } else {
+    return "Obesidade grau 3";
+  }
+}
+
+function mostra(imc, classificacao) {
+  const resultado = document.querySelector(".resultado");
+  resultado.innerHTML = `Seu imc é ${imc.toFixed(2)} (${classificacao})`;
+}
