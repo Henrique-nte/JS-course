@@ -15,10 +15,10 @@ function funcaoPrincipal() {
     //Verificar se é valido
     if (isNaN(Number(valorPeso))) {
       resultado.innerHTML = "Peso inválido";
-      resultado.style.backgroundColor = "red";
+      resultado.style.backgroundColor = "rgb(208, 29, 29)";
     } else if (isNaN(Number(valorAltura))) {
       resultado.innerHTML = "Altura inválida";
-      resultado.style.backgroundColor = "red";
+      resultado.style.backgroundColor = "rgb(208, 29, 29)";
     } else {
       if (resul < 18.5) {
         classificacao = "Abaixo do peso";
@@ -26,6 +26,12 @@ function funcaoPrincipal() {
         classificacao = "Peso Normal";
       } else if (resul < 29.9) {
         classificacao = "Sobrepeso";
+      } else if (resul < 34.9) {
+        classificacao = "Obesidade grau 1";
+      } else if (resul < 39.9) {
+        classificacao = "Obesidade grau 2";
+      } else {
+        classificacao = "Obesidade grau 3";
       }
       resultado.style.backgroundColor = "";
       resultado.innerHTML = `Seu IMC é ${resul.toFixed(2)} (${classificacao})`;
