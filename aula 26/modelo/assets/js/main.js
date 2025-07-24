@@ -3,14 +3,26 @@ function principal() {
   form.addEventListener("submit", function (event) {
     event.preventDefault();
 
+    const resultado = document.querySelector(".resultado");
+
     const inputPeso = form.querySelector("#peso");
     const inputAltura = form.querySelector("#altura");
 
     let peso = Number(inputPeso.value);
     let altura = Number(inputAltura.value);
 
+    if (!peso) {
+      // Se peso nao for verdadeiro(se for uma string, pois tudo que nao tem valor é falso resumindo)
+      resultado.style.backgroundColor = "#dc2e37";
+      return (resultado.innerHTML = "Peso inválido"); //Return aqui para parar a execução da função
+    } else if (!altura) {
+      // Se altura nao for verdadeiro(se for uma string, pois tudo que nao tem valor é falso resumindo)
+      resultado.style.backgroundColor = "#dc2e37";
+      return (resultado.innerHTML = "Altura Inválida"); //Return aqui para parar a execução da função
+    }
+
     let imc = calculaImc(peso, altura);
-    let classificacao = classifica(resultado);
+    let classificacao = classifica(imc);
 
     mostra(imc, classificacao);
   });
@@ -38,5 +50,8 @@ function classifica(resultado) {
 
 function mostra(imc, classificacao) {
   const resultado = document.querySelector(".resultado");
+  resultado.style.backgroundColor = "";
   resultado.innerHTML = `Seu imc é ${imc.toFixed(2)} (${classificacao})`;
 }
+
+principal();
