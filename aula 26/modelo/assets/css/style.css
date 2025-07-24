@@ -31,7 +31,7 @@ h1 {
   margin: 1.5rem 0;
 }
 
-.resultado {
+.style-resultado {
   font-weight: 700;
   color: #ffffff;
   background-color: #2e7d32; /* verde mais escuro e contrastante */
@@ -41,8 +41,9 @@ h1 {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   text-align: center;
 }
-
-
+.style-wrong{
+  background-color: rgb(205, 34, 34);
+}
 
 
 form input, form label, form button {

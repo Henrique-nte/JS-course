@@ -4,6 +4,7 @@ function principal() {
     event.preventDefault();
 
     const resultado = document.querySelector(".resultado");
+    resultado.classList.add("style-resultado");
 
     const inputPeso = form.querySelector("#peso");
     const inputAltura = form.querySelector("#altura");
@@ -24,9 +25,11 @@ function principal() {
     let imc = calculaImc(peso, altura);
     let classificacao = classifica(imc);
 
-    mostra(imc, classificacao);
+    mostraResultado(imc, classificacao);
   });
 }
+
+function validaNumber() {}
 
 function calculaImc(peso, altura) {
   return peso / altura ** 2;
@@ -48,7 +51,7 @@ function classifica(resultado) {
   }
 }
 
-function mostra(imc, classificacao) {
+function mostraResultado(imc, classificacao) {
   const resultado = document.querySelector(".resultado");
   resultado.style.backgroundColor = "";
   resultado.innerHTML = `Seu imc é ${imc.toFixed(2)} (${classificacao})`;
