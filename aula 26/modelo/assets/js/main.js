@@ -12,28 +12,26 @@ function principal() {
     let peso = Number(inputPeso.value);
     let altura = Number(inputAltura.value);
 
-    let msg = validaNumber(peso, altura);
-
-    if (msg) {
-      return (resultado.innerHTML = msg);
-    } else {
-      let imc = calculaImc(peso, altura);
-      let classificacao = classifica(imc);
-
-      mostraResultado(imc, classificacao);
+    if (isInvalidNumber(peso, altura, resultado)) {
+      return; //Se validarNumber receber true ou seja se os valores forem inválido ele interrompe a execução e mostra a mensagem que tem na funcao validaNumber
     }
+    //Se receber false, continua executando...
+
+    let imc = calculaImc(peso, altura);
+    let classificacao = classifica(imc);
+
+    mostraResultado(imc, classificacao);
   });
 }
 
-function validaNumber(peso, altura) {
-  const resultado = document.querySelector(".resultado");
+function isInvalidNumber(peso, altura, resultado) {
   if (!peso) {
     // Se peso nao for verdadeiro(se for uma string, pois tudo que nao tem valor é falso resumindo)
-    resultado.style.backgroundColor = "#dc2e37";
-    return (resultado.innerHTML = "Peso inválido"); //Return aqui para parar a execução da função
+    resultado.classList.add("style-wrong");
+    return (resultado.innerHTML = "Peso inválido"); //True
   } else if (!altura) {
-    // Se altura nao for verdadeiro(se for uma string, pois tudo que nao tem valor é falso resumindo)
-    resultado.style.backgroundColor = "#dc2e37";
+    // Contrário do if acima
+    resultado.classList.add("style-wrong");
     return (resultado.innerHTML = "Altura Inválida"); //True
   }
 
@@ -62,7 +60,10 @@ function classifica(resultado) {
 
 function mostraResultado(imc, classificacao) {
   const resultado = document.querySelector(".resultado");
-  resultado.style.backgroundColor = "";
+
+  if (resultado.classList.contains("style-wrong")) {
+    resultado.classList.remove("style-wrong");
+  }
   resultado.innerHTML = `Seu imc é ${imc.toFixed(2)} (${classificacao})`;
 }
 
